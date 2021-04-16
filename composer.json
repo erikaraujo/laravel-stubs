@@ -1,0 +1,54 @@
+{
+    "name": "erikaraujo/laravel-stubs",
+    "description": "Opinionated Laravel stubs with resources",
+    "keywords": [
+        "erikaraujo",
+        "inertiajs",
+        "laravel-stubs"
+    ],
+    "homepage": "https://github.com/erikaraujo/laravel-stubs",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Erik Araujo",
+            "email": "contact@erikaraujo.com",
+            "homepage": "https://erikaraujo.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "laravel/framework": "^7.2|^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0",
+        "mockery/mockery": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "ErikAraujo\\Stubs\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ErikAraujo\\Stubs\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "format": "vendor/bin/php-cs-fixer fix",
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ErikAraujo\\Stubs\\StubsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

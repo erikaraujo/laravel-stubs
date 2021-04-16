@@ -1,0 +1,65 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use Illuminate\Http\Request;
+
+class {{ class }}
+{
+    public function index()
+    {
+        ${{ modelVariable }} = {{ model }}::all();
+
+        return response()->json([
+            'data' => ${{ modelVariable }},
+            'total' => ${{ modelVariable }}->count(),
+        ], 200);
+    }
+
+    public function store(Request $request)
+    {
+        ${{ modelVariable }} = {{ model }}::create($request->validated());
+
+        return response()->json([
+            'data' => ${{ modelVariable }},
+        ], 201);
+    }
+
+    public function show({{ model }} ${{ modelVariable }})
+    {
+        return response()->json([
+            'data' => ${{ modelVariable }},
+        ], 200);
+    }
+
+    public function update(Request $request, {{ model }} ${{ modelVariable }})
+    {
+        ${{ modelVariable }}->update($request->validated());
+
+        return response()->json([
+            'data' => ${{ modelVariable }},
+        ], 200);
+    }
+
+    public function destroy({{ model }} ${{ modelVariable }})
+    {
+        ${{ modelVariable }}->delete();
+        return response()->json([], 204);
+    }
+
+    public function forceDestroy(int $id)
+    {
+        {{ model }}::onlyTrashed()->find($id)->forceDelete();
+        return response()->json([], 204);
+    }
+
+    public function restore(int $id)
+    {
+        ${{modelVariable}} = {{ model }}::onlyTrashed()->find($id);
+
+        return response()->json([
+            'data' => ${{ modelVariable }},
+        ], 200);
+    }
+}

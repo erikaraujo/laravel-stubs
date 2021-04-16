@@ -1,0 +1,39 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use Illuminate\Http\Request;
+
+class {{ class }}
+{
+    public function index()
+    {
+    }
+
+    public function store(Request $request)
+    {
+    }
+
+    public function show({{ model }} ${{ modelVariable }})
+    {
+    }
+
+    public function update(Request $request, {{ model }} ${{ modelVariable }})
+    {
+    }
+
+    public function destroy({{ model }} ${{ modelVariable }})
+    {
+    }
+
+    public function forceDestroy(int $id)
+    {
+        ${{modelVariable}} = {{ model }}::onlyTrashed()->find($id);
+    }
+
+    public function restore(int $id)
+    {
+        ${{modelVariable}} = {{ model }}::onlyTrashed()->find($id);
+    }
+}

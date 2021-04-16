@@ -1,0 +1,75 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+class {{ class }}
+{
+    public function index()
+    {
+        return Inertia::render('{{ model }}/Index', [
+            '{{ modelVariable }}' => {{ model }}::paginate()->onEachSide(1),
+        ]);
+    }
+
+    public function create()
+    {
+        return Inertia::render('{{ model }}/Create', [
+            '{{ modelVariable }}' => ${{ modelVariable }},
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        ${{ modelVariable }} = {{ model }}::create($request->validated());
+
+        return redirect()->route('{{ model }}.index', [
+            '{{ modelVariable }}' => ${{ modelVariable }},
+        ]);
+    }
+
+    public function show({{ model }} ${{ modelVariable }})
+    {
+        return Inertia::render('{{ model }}/Show', [
+            '{{ modelVariable }}' => ${{ modelVariable }},
+        ]);
+    }
+
+    public function edit({{ model }} ${{ modelVariable }})
+    {
+        return Inertia::render('{{ model }}/Edit', [
+            '{{ modelVariable }}' => ${{ modelVariable }},
+        ]);
+    }
+
+    public function update(Request $request, {{ model }} ${{ modelVariable }})
+    {
+        ${{ modelVariable }}->update($request->validated());
+
+        return back()->with('success', '{{ model }} updated.');
+    }
+
+    public function destroy({{ model }} ${{ modelVariable }})
+    {
+        ${{ modelVariable }}->delete();
+
+        return back()->with('success', '{{ model }} deleted.');
+    }
+
+    public function forceDestroy(int $id)
+    {
+        {{ model }}::onlyTrashed()->find($id)->forceDelete();
+
+        return back()->with('success', '{{ model }} destroyed.');
+    }
+
+    public function restore(int $id)
+    {
+        {{ model }}::onlyTrashed()->find($id)->restore();
+
+        return back()->with('success', '{{ model }} restored.');
+    }
+}

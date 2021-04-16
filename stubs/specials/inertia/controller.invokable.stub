@@ -1,0 +1,13 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+class {{ class }}
+{
+    public function __invoke(Request $request)
+    {
+    }
+}

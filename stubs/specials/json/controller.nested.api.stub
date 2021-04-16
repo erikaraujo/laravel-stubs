@@ -1,0 +1,53 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use Illuminate\Http\Request;
+use {{ namespacedParentModel }};
+
+class {{ class }}
+{
+    public function index({{ parentModel }} ${{ parentModelVariable }})
+    {
+        // TODO: Double check the relationship name
+
+        return response()->json([
+            'data' => ${{ parentModelVariable }}->{{ modelVariable }},
+            'total' => ${{ parentModelVariable }}->{{ modelVariable }}()->count(),
+        ], 200);
+    }
+
+    public function store(Request $request, {{ parentModel }} ${{ parentModelVariable }})
+    {
+        // TODO: Double check the relationship name
+        
+        ${{ modelVariable }} = {{ parentModelVariable }}->{{ modelVariable }}()->create($request->validated());
+
+        return response()->json([
+            'data' => ${{ modelVariable }},
+        ], 201);
+    }
+
+    public function show({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }})
+    {
+        return response()->json([
+            'data' => ${{ modelVariable }},
+        ], 200);
+    }
+
+    public function update(Request $request, {{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }})
+    {
+        ${{ modelVariable }}->update($request->validated());
+
+        return response()->json([
+            'data' => ${{ modelVariable }},
+        ], 200);
+    }
+
+    public function destroy({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }})
+    {
+        ${{ modelVariable }}->delete();
+        return response()->json([], 204);
+    }
+}
