@@ -17,9 +17,7 @@ class {{ class }}
 
     public function create()
     {
-        return Inertia::render('{{ model }}/Create', [
-            '{{ modelVariable }}' => ${{ modelVariable }},
-        ]);
+        return Inertia::render('{{ model }}/Create');
     }
 
     public function store(Request $request)
